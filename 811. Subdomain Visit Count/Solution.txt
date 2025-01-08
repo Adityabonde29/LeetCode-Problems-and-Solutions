@@ -1,0 +1,29 @@
+public class Solution {
+    public IList<string> SubdomainVisits(string[] cpdomains) {
+        Hashtable result = new Hashtable();
+        
+        foreach (string str in cpdomains) {
+            string[] keyvalue = str.Split(" ");
+            int count = int.Parse(keyvalue[0]);
+            string domain = keyvalue[1];
+
+            string[] subdomains = domain.Split('.');
+            for (int i = 0; i < subdomains.Length; i++) {
+                string key = string.Join(".", subdomains.Skip(i));
+                
+                if (result.ContainsKey(key)) {
+                    result[key] = (int)result[key] + count;
+                } else {
+                    result.Add(key, count);
+                }
+            }
+        }
+
+        List<string> ad = new List<string>();
+        foreach (DictionaryEntry entry in result) {
+            ad.Add($"{entry.Value} {entry.Key}");
+        }
+
+        return ad;
+    }
+}
