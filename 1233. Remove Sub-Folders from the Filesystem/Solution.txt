@@ -1,0 +1,16 @@
+public class Solution {
+    public IList<string> RemoveSubfolders(string[] folder) {
+        Array.Sort(folder);
+        List<string> result = new List<string>();
+        
+        string prev = "";
+        foreach (string f in folder) {
+            if (prev == "" || !f.StartsWith(prev + "/")) {
+                result.Add(f);
+                prev = f;
+            }
+        }
+        
+        return result;
+    }
+} 
