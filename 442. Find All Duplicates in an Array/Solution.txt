@@ -1,0 +1,24 @@
+public class Solution {
+    public IList<int> FindDuplicates(int[] nums) {
+        List<int> result = new List<int>();
+        List<int> v = new List<int>();
+ 
+        for(int i = 0 ; i < nums.Length ; i++ ){
+            if(!v.Contains(nums[i])){
+                v.Add(nums[i]);
+                int count = 1;
+                for(int j = i+1 ; j < nums.Length ; j++ ){
+                    if(nums[i] == nums[j]){
+                        count++;
+                    }
+                }
+ 
+                if(count == 2){
+                    result.Add(nums[i]);
+                }
+            }
+        }
+ 
+        return result;
+    }
+}
