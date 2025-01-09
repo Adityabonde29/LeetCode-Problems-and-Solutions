@@ -1,0 +1,27 @@
+public class Solution {
+    public bool UniqueOccurrences(int[] arr) {
+        List<int> lol = new List<int>();
+        List<int> visited = new List<int>();
+ 
+        for(int i = 0 ; i < arr.Length ; i++ ){
+            if(!visited.Contains(arr[i])){
+                visited.Add(arr[i]);
+                int count = 0;
+                for(int j = i + 1 ; j < arr.Length ; j++ ){
+                    if(arr[i] == arr[j]){
+                        count++;
+                    }
+                }
+                if(lol.Contains(count)){
+                    return false;
+                } else {
+                    lol.Add(count);
+                }
+            }
+        }
+ 
+        return true;
+ 
+ 
+    }
+}
