@@ -1,0 +1,13 @@
+public class Solution {
+    public char KthCharacter(int k) {
+        string word = "a";
+        while (word.Length < k) {
+            string sr = "";
+            foreach (char ch in word) {
+                sr += (ch == 'z') ? 'a' : (char)(ch + 1);
+            }
+            word += sr;
+        }
+        return word[k - 1];
+    }
+}
