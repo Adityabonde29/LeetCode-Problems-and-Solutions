@@ -1,0 +1,23 @@
+public class Solution {
+    public int same(int[] A, int[] B, int lol){
+        int count = 0;
+        for(int i = 0 ; i <= lol ; i++ ){
+            for(int j = 0 ; j <= lol ; j++ ){
+                if(A[i] == B[j]){
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
+    public int[] FindThePrefixCommonArray(int[] A, int[] B) {
+        int[] C = new int[A.Length];
+
+        for(int i = 0 ; i < C.Length ; i++ ){
+            C[i] = same(A,B,i);
+        }
+
+        return C;
+    }
+}
