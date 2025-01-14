@@ -1,0 +1,28 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     public int val;
+ *     public ListNode next;
+ *     public ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public bool HasCycle(ListNode head) {
+        List<ListNode> lol = new List<ListNode>();
+        ListNode curr = head;
+
+        while(curr != null){
+            if(lol.Contains(curr)){
+                return true;
+            } else {
+                lol.Add(curr);
+                curr = curr.next;
+            }
+        }
+
+        return false;
+    }
+}
