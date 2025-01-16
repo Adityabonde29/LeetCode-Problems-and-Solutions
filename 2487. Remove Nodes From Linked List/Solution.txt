@@ -1,0 +1,41 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     public int val;
+ *     public ListNode next;
+ *     public ListNode(int val=0, ListNode next=null) {
+ *         this.val = val;
+ *         this.next = next;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode RemoveNodes(ListNode head) {
+        if (head == null) return null;
+
+        List<int> lol = new List<int>();
+        ListNode curr = head;
+        while (curr != null) {
+            lol.Add(curr.val);
+            curr = curr.next;
+        }
+
+        Stack<int> stack = new Stack<int>();
+        for (int i = lol.Count - 1; i >= 0; i--) {
+            if (stack.Count == 0 || lol[i] >= stack.Peek()) {
+                stack.Push(lol[i]);
+            }
+        }
+
+        curr = head;
+        while (stack.Count > 0) {
+            curr.val = stack.Pop();
+            if (stack.Count > 0) {
+                curr = curr.next;
+            }
+        }
+        curr.next = null;
+
+        return head;
+    }
+}
