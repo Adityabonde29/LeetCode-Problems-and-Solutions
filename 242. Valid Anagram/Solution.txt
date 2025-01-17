@@ -2,11 +2,15 @@ public class Solution {
     public bool IsAnagram(string s, string t) {
         List<char> lol = new List<char>();
 
-        foreach(char ch in s){
-            lol.Add(ch);
+        if(s.Length != t.Length){
+            return false;
         }
 
         foreach(char ch in t){
+            lol.Add(ch);
+        }
+
+        foreach(char ch in s){
             if(lol.Contains(ch)){
                 lol.Remove(ch);
             }
