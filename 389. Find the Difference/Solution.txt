@@ -1,0 +1,14 @@
+public class Solution {
+    public char FindTheDifference(string s, string t) {
+        List<char> lol = new List<char>();
+        foreach(char ch in t){
+            lol.Add(ch);
+        }
+
+        foreach(char ch in s){
+            lol.Remove(ch);
+        }
+
+        return lol[0];
+    }
+}
