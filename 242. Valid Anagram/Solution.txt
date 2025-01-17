@@ -1,0 +1,21 @@
+public class Solution {
+    public bool IsAnagram(string s, string t) {
+        List<char> lol = new List<char>();
+
+        foreach(char ch in s){
+            lol.Add(ch);
+        }
+
+        foreach(char ch in t){
+            if(lol.Contains(ch)){
+                lol.Remove(ch);
+            }
+        }
+
+        if(lol.Count == 0){
+            return true;
+        }
+
+        return false;
+    }
+}
