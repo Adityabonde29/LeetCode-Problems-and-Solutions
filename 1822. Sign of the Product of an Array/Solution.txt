@@ -1,0 +1,21 @@
+public class Solution {
+    public int ArraySign(int[] nums) {
+        int c = 0;
+
+        if(nums.Contains(0)){
+            return 0;
+        }
+
+        foreach(int i in nums){
+            if(i < 0){
+                c++;
+            }
+        }
+
+        if(c%2 == 0){
+            return 1;
+        } else {
+            return -1;
+        }
+    }
+}
