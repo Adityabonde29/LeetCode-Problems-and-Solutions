@@ -1,0 +1,12 @@
+public class Solution {
+    public bool RepeatedSubstringPattern(string s) {
+        string lol = s + s;
+        lol = lol.Substring(1,lol.Length - 2);
+
+        if(lol.Contains(s)){
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
