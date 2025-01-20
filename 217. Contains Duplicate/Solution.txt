@@ -1,0 +1,14 @@
+public class Solution {
+    public bool ContainsDuplicate(int[] nums) {
+        List<int> res = new List<int>();
+        foreach(int i in nums) {
+            if(res.Contains(i)){
+                return true;
+            } else {
+                res.Add(i);
+            }
+        }
+
+        return false;
+    }
+}
