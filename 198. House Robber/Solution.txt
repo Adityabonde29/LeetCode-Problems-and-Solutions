@@ -1,0 +1,26 @@
+public class Solution
+{
+    public int solve(int[] nums)
+    {
+        int n = nums.Length;
+        if (n == 0) return 0;
+        if (n == 1) return nums[0];
+
+        List<int> dp = new List<int>(new int[n]);
+        dp[0] = nums[0];
+
+        for (int j = 1; j < n; j++)
+        {
+            int incl = nums[j] + (j - 2 >= 0 ? dp[j - 2] : 0);
+            int excl = dp[j - 1];
+            dp[j] = Math.Max(incl, excl);
+        }
+
+        return dp[n - 1];
+    }
+
+    public int Rob(int[] nums)
+    {
+        return solve(nums);
+    }
+}
