@@ -1,0 +1,29 @@
+public class Solution {
+    public int solve(int[] nums, int n, List<int> dp) {
+        Dictionary<int, int> freq = new Dictionary<int, int>();
+        int maxNum = 0;
+        foreach (int num in nums) {
+            if (!freq.ContainsKey(num)) {
+                freq[num] = 0;
+            }
+            freq[num]++;
+            maxNum = Math.Max(maxNum, num);
+        }
+
+        dp[0] = 0;
+        dp[1] = freq.ContainsKey(1) ? freq[1] * 1 : 0;
+
+        for (int i = 2; i <= maxNum; i++) {
+            int take = freq.ContainsKey(i) ? freq[i] * i : 0;
+            dp[i] = Math.Max(dp[i - 1], dp[i - 2] + take);
+        }
+
+        return dp[maxNum];
+    }
+
+    public int DeleteAndEarn(int[] nums) {
+        int n = nums.Length;
+        List<int> dp = new List<int>(new int[10001]);
+        return solve(nums, n, dp);
+    }
+}
