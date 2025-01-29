@@ -1,0 +1,45 @@
+public class Solution {
+    public IList<string> FullJustify(string[] words, int maxWidth) {
+		List<string> result = new List<string>();
+		List<string> temp = new List<string>();
+		string line = string.Empty;
+		foreach (string word in words)
+		{
+			if (temp.Count + word.Length + temp.Sum(x => x.Length) <= maxWidth)
+			{
+				temp.Add(word);
+			}
+			else
+			{
+				result.Add(Justify(temp, maxWidth));
+				temp = new List<string>() { word };
+			}
+		}
+		if (temp.Count > 0)
+		{
+			result.Add(string.Join(" ", temp).PadRight(maxWidth));
+		}
+		return result.ToArray();
+    }
+
+	public string Justify(List<string> words, int maxWidth)
+	{
+		if (words.Count == 1)
+		{
+			return words[0].PadRight(maxWidth);
+		}
+        while (words.Sum(x => x.Length) < maxWidth)
+        {
+            for (int i = 0; i < words.Count - 1; i++)
+            {
+                words[i] = words[i] + " ";
+                if (words.Sum(x => x.Length) == maxWidth)
+                {
+                    break;
+                }
+            }
+        }
+		return string.Join("", words);
+    }
+    
+}
