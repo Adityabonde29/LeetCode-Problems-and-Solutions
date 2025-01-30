@@ -1,0 +1,53 @@
+public class Solution {
+    public IList<int> FindSubstring(string s, string[] words) {
+        List<int> res = new List<int>();
+        if (s == null || s.Length == 0 || words == null || words.Length == 0) return res;
+
+        int wordLength = words[0].Length;
+        int totalLength = words.Length * wordLength;
+
+        Dictionary<string, int> wordCount = new Dictionary<string, int>();
+        foreach (string word in words) {
+            if (wordCount.ContainsKey(word)) {
+                wordCount[word]++;
+            } else {
+                wordCount[word] = 1;
+            }
+        }
+
+        for (int i = 0; i < wordLength; i++) {
+            int left = i, right = i, count = 0;
+            Dictionary<string, int> seenWords = new Dictionary<string, int>();
+
+            while (right + wordLength <= s.Length) {
+                string word = s.Substring(right, wordLength);
+                right += wordLength;
+
+                if (wordCount.ContainsKey(word)) {
+                    if (!seenWords.ContainsKey(word)) {
+                        seenWords[word] = 0;
+                    }
+                    seenWords[word]++;
+                    count++;
+
+                    while (seenWords[word] > wordCount[word]) {
+                        string leftWord = s.Substring(left, wordLength);
+                        seenWords[leftWord]--;
+                        count--;
+                        left += wordLength;
+                    }
+
+                    if (count == words.Length) {
+                        res.Add(left);
+                    }
+                } else {
+                    seenWords.Clear();
+                    count = 0;
+                    left = right;
+                }
+            }
+        }
+        
+        return res;
+    }
+}
