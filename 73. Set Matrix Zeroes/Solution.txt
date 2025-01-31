@@ -1,0 +1,27 @@
+public class Solution {
+    public void SetZeroes(int[][] matrix) {
+        List<int> x = new List<int>();
+        List<int> y = new List<int>();
+
+        for(int i = 0 ; i < matrix.Length ; i++ ){
+            for(int j = 0 ; j < matrix[0].Length ; j++ ){
+                if(matrix[i][j] == 0){
+                    x.Add(i);
+                    y.Add(j);
+                }
+            }
+        }
+
+        foreach(int num in x){
+            for(int i = 0 ; i < matrix[0].Length ; i++ ){
+                matrix[num][i] = 0;
+            }
+        }
+
+        foreach(int num in y){
+            for(int i = 0 ; i < matrix.Length ; i++ ){
+                matrix[i][num] = 0;
+            }
+        }
+    }
+}
