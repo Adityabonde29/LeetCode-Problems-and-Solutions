@@ -1,0 +1,23 @@
+public class Solution {
+    public bool CanConstruct(string ransomNote, string magazine) {
+        Dictionary<char, int> ht = new Dictionary<char, int>();
+        
+        foreach (char ch in magazine) {
+            if (ht.ContainsKey(ch)) {
+                ht[ch]++;
+            } else {
+                ht[ch] = 1;
+            }
+        }
+
+        foreach (char ch in ransomNote) {
+            if (ht.ContainsKey(ch) && ht[ch] > 0) {
+                ht[ch]--;
+            } else {
+                return false;
+            }
+        }
+
+        return true;
+    }
+}
