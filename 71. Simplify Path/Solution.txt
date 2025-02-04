@@ -1,0 +1,28 @@
+public class Solution {
+    public string SimplifyPath(string path) {
+        string[] arr = path.Split('/');
+        string[] filteredArr = arr.Where(s => !string.IsNullOrEmpty(s)).ToArray();
+
+        Stack<string> st = new Stack<string>();
+
+        foreach (string s in filteredArr) {
+            if (s == "..") {
+                if (st.Count > 0) {
+                    st.Pop();
+                }
+            } else if (s == ".") {
+                continue;
+            } else {
+                st.Push(s);
+            }
+        }
+
+        string result = "";
+
+        while (st.Count > 0) {
+            result = "/" + st.Pop() + result;
+        }
+
+        return result == "" ? "/" : result;
+    }
+}
