@@ -1,0 +1,28 @@
+public class Solution {
+    public int EvalRPN(string[] tokens) {
+        Stack<int> st = new Stack<int>();
+        foreach(string str in tokens){
+            if(str == "+" || str == "-" || str == "*" || str == "/"){
+                int first = st.Peek();
+                st.Pop();
+                int second = st.Peek();
+                st.Pop();
+
+                if(str == "+"){
+                    st.Push(first + second);
+                } else if(str == "-"){
+                    st.Push(second - first);
+                } else if(str == "*"){
+                    st.Push(first * second);
+                } else if(str == "/"){
+                    st.Push(second / first);
+                }
+
+            } else {
+                st.Push(int.Parse(str));
+            }
+        }
+
+        return st.Peek();
+    }
+}
