@@ -1,0 +1,46 @@
+public class MinStack {
+    private readonly List<int> stack = new();
+    private readonly List<int> sorted = new();
+
+    public MinStack()
+    {
+    }
+
+    public void Push(int val)
+    {
+        if (sorted.Count == 0)
+        {
+            sorted.Add(val);
+        }
+        else
+        {
+            int i = 0;
+            for (i = 0; i < sorted.Count; i++)
+            {
+                if (val < sorted[i])
+                {
+                    sorted.Insert(i, val);
+                    break;
+                }
+            }
+            if (i == sorted.Count) sorted.Add(val);
+        }
+        stack.Add(val);
+    }
+
+    public void Pop()
+    {
+        sorted.Remove(stack.Last());
+        stack.RemoveAt(stack.Count - 1);
+    }
+
+    public int Top()
+    {
+        return stack.Last();
+    }
+
+    public int GetMin()
+    {
+        return sorted.First();
+    }
+}
