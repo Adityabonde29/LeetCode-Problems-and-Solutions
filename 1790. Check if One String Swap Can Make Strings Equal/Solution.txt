@@ -1,0 +1,31 @@
+public class Solution {
+    public bool AreAlmostEqual(string s1, string s2) {
+        if(s1.Length != s2.Length){
+            return false;
+        }
+
+        List<char> ch = new List<char>();
+
+        foreach(char c in s1){
+            ch.Add(c);
+        }
+
+        int count = 0;
+
+        for(int i = 0 ; i < s1.Length ; i++ ){
+
+            if(!ch.Contains(s2[i])){
+                return false;
+            } else {
+                ch.Remove(s2[i]);
+            }
+
+            if(s1[i] != s2[i]){
+                count++;
+            }
+        }
+        
+
+        return count <= 2 ? true : false;
+    }
+}
