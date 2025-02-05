@@ -1,0 +1,36 @@
+public class Solution {
+    public int Calculate(string s) {
+        s = s.Replace(" ", "");
+        Stack<int> st = new Stack<int>();
+
+        int curr = 0;
+        int sign = 1;
+        int sum = 0;
+
+        foreach (char ch in s) {
+            if (char.IsDigit(ch)) {
+                curr = curr * 10 + (ch - '0');
+            } else if (ch == '+') {
+                sum += curr * sign;
+                sign = 1;
+                curr = 0;
+            } else if (ch == '-') {
+                sum += curr * sign;
+                sign = -1;
+                curr = 0;
+            } else if (ch == '(') {
+                st.Push(sum);
+                st.Push(sign);
+                sign = 1;
+                sum = 0;
+            } else if (ch == ')') {
+                sum += curr * sign;
+                sum *= st.Pop();
+                sum += st.Pop();
+                curr = 0;
+            }
+        }
+        sum += curr * sign;
+        return sum;
+    }
+}
