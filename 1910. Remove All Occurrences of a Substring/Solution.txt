@@ -1,0 +1,16 @@
+public class Solution {
+    public string RemoveOccurrences(string s, string part) {
+        if(!s.Contains(part)){
+            return s;
+        }
+
+        for(int i = 0 ; i <= s.Length - part.Length ; i++ ){
+            if(part == s.Substring(i,part.Length)){
+                s = s.Remove(i,part.Length);
+                i = -1;
+            }
+        }
+
+        return RemoveOccurrences(s,part);
+    }
+}
